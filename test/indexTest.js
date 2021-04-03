@@ -8,7 +8,7 @@ describe("The payroll system", function () {
       it("populates a firstName field from the 0th element", function () {
         let testEmployee = createEmployeeRecord(["Gray", "Worm", "Security", 1])
         expect(testEmployee.firstName).to.eq("Gray")
-      })
+      }) 
 
       it("populates a familyName field from the 1th element", function () {
         let testEmployee = createEmployeeRecord(["Gray", "Worm", "Security", 1])
