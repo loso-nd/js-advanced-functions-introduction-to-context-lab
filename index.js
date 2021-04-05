@@ -15,6 +15,7 @@ const createEmployeeRecord = (arr) => {
    }  
 }
 
+//converts nested arrary means iterate and New array means we need to use an array method that iterates and returns a new array. 
 const createEmployeeRecords = (array) => {
    // console.log(array)
     return array.map(arr => createEmployeeRecord(arr))
@@ -22,18 +23,18 @@ const createEmployeeRecords = (array) => {
 
 const createTimeInEvent = (object, time) => {
    // console.log(object, time) 
-    // adding new keys to the timeOut arr created from createEmployeeRecord()
+    // adding new keys to the timeInEvent array > we need arr method that allows us to push elements into an arr
     //to add 2 new ele inside the timeInEvents arr via .push() or the spread operator
-    //to access the array we need to go into the object > arr > .push(objects we want to add)
+//to access the Obj > arr via dot notation > .push({objects properties we want to add})
     object.timeInEvents.push({
         type: "TimeIn",
-//To access an ele in a str we use .split(' ') which translate a str into an arr. then grab the index of the ele
+// .split(' ') translate a str into an arr. then grab the indx of the ele we want
         hour: parseInt(time.split(' ')[1]), // Derived from the argument "YYYY-MM-DD HHMM"
         date: time.split(' ')[0] // Derived from the argument "YYYY-MM-DD HHMM"
     })
-    return object
+    return object // employee record
 }
-
+//Similar behavior to the previous func
 const createTimeOutEvent = (object, time) => {
    // console.log(object, time)
     object.timeOutEvents.push({
@@ -53,7 +54,9 @@ const createTimeOutEvent = (object, time) => {
 
 const hoursWorkedOnDate = (object, date) => {
     //console.log(object, date)
-//create to variables (timeIn / timeOut) assigned the object > .time arrays > .find() an element.date === the date passed into the func as an arg
+//create to variables (timeIn / timeOut) assignd to the particular date in or array of obj
+// via dot notation we access the object > array > .find() and check if the ele papssed as an arg matches the date in the arra [ element.date ===  date ]
+//Access the date properties inside the arr w/ ele.date & match it with the arg given
     let timeIn = object.timeInEvents.find(element => element.date === date)
     let timeOut = object.timeOutEvents.find(element => element.date === date)
    // console.log(object.timeInEvents, object.timeOutEvents)
@@ -64,17 +67,18 @@ const hoursWorkedOnDate = (object, date) => {
     return calculate 
 }
 
-//To calc the employee earned $54 they would have to have worked 2hrs x $27/hr 
+//To calc the employee earned $54 they need to work 2hrs x $27/hr 
 const wagesEarnedOnDate = (object, date) => {
   //  console.log(object, date)
-    let timeIn = object.timeInEvents.find(element => element.date === date)
-    let timeOut = object.timeOutEvents.find(element => element.date === date)
+    // let timeIn = object.timeInEvents.find(element => element.date === date)
+    // let timeOut = object.timeOutEvents.find(element => element.date === date)
    // console.log(object.timeInEvents, object.timeOutEvents)
   // console.log(timeIn.hour, timeOut.hour, object.payPerHour)
 
-   let check = ((timeOut.hour - timeIn.hour) * object.payPerHour) / 100
+//    let check = ((timeOut.hour - timeIn.hour) * object.payPerHour) / 100
 
-   return check
+//    return check
+return  hoursWorkedOnDate(object, date) * object.payPerHour
 }
 
 // So first thing's first, we need to get a list of all of the dates that the employee worked
